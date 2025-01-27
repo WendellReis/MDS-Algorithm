@@ -1,30 +1,37 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <unordered_set>
+#include <algorithm>
+#include <string>
 
 using namespace std;
 
-vector<int> MDS;
-int one_idx = 1;
+unordered_set<int> MDS;
 
 void inicializeMDS(int size) {
-    MDS = vector<int>(size);
-
-   for (size_t i = 0; i < size; i++)
-        MDS[i] = i;
+   for (size_t i = 1; i <= size; i++)
+        MDS.insert(i);
 }
 
-bool isDominant(vector<int> &ds, vector<vector<int>> &adj, int size) {
-    printf("k = %d\n",(int)ds.size());
-    for(int v = one_idx; v < size + one_idx; v++) {
-        for(auto k : ds) {
-            if(k == v || find(adj[v].begin(),adj[v].end(),k) != adj[v].begin())
-                continue;
+bool isDominant(unordered_set<int> &ds, vector<vector<int>> &adj, int size) {
+    for(int v = 1; v <= size; v++) {
+        if(ds.find(v) != ds.end())
+            continue;
+        
+        bool dominated = false;
+        for(auto u : adj[v])
+            if(ds.find(u) != ds.end()) {
+                dominated = true;
+                break;
+            }
+        if(!dominated)
             return false;
-        }
     }
     return true;
 }
 
-bool updateDominant(vector<int> &ds) {
+bool updateDominant(unordered_set<int> &ds) {
     if(ds.size() > MDS.size())
         return false;
 
@@ -32,21 +39,24 @@ bool updateDominant(vector<int> &ds) {
     return true;
 }
 
-void solve(vector<int> ds, vector<vector<int>> &adj, int size) {
-    if(ds.size() > MDS.size())
-        return;
-    if(isDominant(ds,adj,size)) {
-        updateDominant(ds);
+void solve(unordered_set<int> ds, vector<vector<int>> &adj, int size, int idx = 0) {
+    if(ds.size() > MDS.size()) {
+        if(isDominant(ds,adj,size))
+            updateDominant(ds);
         return;
     }
 
-    for(int v = one_idx; v < size + one_idx; v++) {
-        if(find(ds.begin(),ds.end(),v) != ds.end())
-            continue;
+    for(int v = idx+1; v <= size; v++) {
+        if (ds.size() >= MDS.size() && !MDS.empty()) return;
+
+        if (isDominant(ds, adj, size)) {
+            updateDominant(ds);
+            return;
+        }
         
-        ds.push_back(v);
-        solve(ds,adj,size);
-        ds.pop_back();
+        ds.insert(v);
+        solve(ds,adj,size,v);
+        ds.erase(v);
     }
 }
 
@@ -68,8 +78,11 @@ vector<vector<int>> getGraph(const string &filename) {
     adj = vector<vector<int>>(size+1);
     int u,v;
     while(file >> u >> v) {
-        if(u == 0 || v == 0)
-            one_idx = 0;
+        if (u <= 0 || v <= 0 || u > size || v > size) {
+            cerr << "Vértice inválido: " << u << " ou " << v << endl;
+            continue;
+        }
+
         adj[u].push_back(v);
         adj[v].push_back(u);
     }
@@ -91,18 +104,15 @@ int main(int argc, char* argv[]) {
             continue;
         }
 
-        int size = adj.size() - one_idx;
-        for(int i = one_idx; i < size + one_idx; i++) {
-            printf("%d: ",i);
-            for(auto u : adj[i])
-                cout << u << " ";
-            cout << endl;
-        }
+        int size = adj.size()-1;
 
-        vector<int> ds;
+        unordered_set<int> ds;
         inicializeMDS(size);
         solve(ds,adj,size);
-        printf("MDS = %d\n", (int)MDS.size());
+        printf("MDS = %d : [ ", (int)MDS.size());
+        for(auto v : MDS)
+            cout << v << " ";
+        cout << "]\n";
     }
 
     return 0;
