@@ -5,6 +5,7 @@
 #include <string>
 #include <chrono>
 #include <math.h>
+#include <set>
 
 using namespace std;
 using namespace chrono;
@@ -52,10 +53,20 @@ bool isAdj(vector<vector<int>> &adj, int u, int v) {
 
 vector<vector<int>> buildCandidateByBasedDegree(vector<vector<int>> &adj, vector<int> &basedDegree) {
     vector<vector<int>> candidates = vector<vector<int>>(adj.size());
-    for (size_t i = 0; i < adj.size(); i++)
-        for (size_t j = 0; j < adj.size(); j++)
-            if(!isAdj(adj, i, j) && basedDegree[i] <= basedDegree[j])
-                candidates[i].push_back(j);
+    for (size_t i = 0; i < adj.size(); i++) {
+        set<int> conjunto;
+        for (size_t j = 0; j < adj[i].size(); j++) {
+            conjunto.insert(adj[i][j]);
+        }
+
+        for (size_t j = 0; j < adj[i].size(); j++) {
+            for(size_t l=0; l < adj[adj[i][j]].size();l++) {
+                if(conjunto.find(adj[adj[i][j]][l]) == conjunto.end()) {
+                    candidates[i].push_back(adj[adj[i][j]][l]);
+                }
+            }
+        }
+    }
     return candidates;    
 }
 
@@ -167,11 +178,25 @@ int main(int argc, char* argv[]) {
             cout << "]\n";
         }
         */
-        cout << "Dominantes: \n";
+        vector<pair<float,int>> dProbability(0);
         int c = 0;
         for(auto k : dominantes) {
-            cout << c << ": " << k << '\n';
+            dProbability.push_back({k, c});
             c++;
+        }
+
+        sort(dProbability.rbegin(), dProbability.rend());
+
+        set<int> coveredVs;
+        set<int> domination;
+        for(auto v : dProbability) {
+            if(v.second == 0)
+                continue;
+            if(coveredVs.find(v.second) == coveredVs.end()) {
+                for (size_t i = 0; i < adj[v.second].size(); i++)
+                    coveredVs.insert(adj[v.second][i]);
+                domination.insert(v.second);
+            }
         }
 
         auto duration = duration_cast<seconds>(stop - start);
@@ -180,6 +205,20 @@ int main(int argc, char* argv[]) {
         long long hours = duration_ms / 3600000;
         long long minutes = (duration_ms % 3600000) / 60000;
         long long seconds = (duration_ms % 60000) / 1000;
+
+        cout << "Domination set: [";
+        auto iterator = domination.begin();
+        for(int i=0;i<domination.size();i++) {
+            if(i+1 == domination.size())
+                cout << *iterator;
+            else
+                cout << *iterator << ", ";
+            iterator++;
+        }
+        cout << "]\n";
+        cout << "Domination size: " << domination.size() << '\n';
+
+        cout << "Size of covered: " << domination.size() + coveredVs.size() << '\n';
 
         cout << "Filename: " << argv[i] << endl;
         cout << "Tempo de execucao: " 

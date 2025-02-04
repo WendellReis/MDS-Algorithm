@@ -1,0 +1,6 @@
+archives/frb30-15-2.txt
+Domination set: [7, 30, 42, 49, 61, 97, 117, 128, 144, 165, 185, 214, 233, 263, 278, 303, 325, 335, 378, 396, 412, 432, 445]
+Domination size: 23
+Size of covered: 450
+Filename: archives/frb30-15-2.txt
+Tempo de execucao: 0 horas, 0 minutos e 1 segundos.
