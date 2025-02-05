@@ -13,7 +13,7 @@ int main() {
     vector<int> SIZES = {15, 20, 25, 30};
 
     for(auto s : SIZES) {
-        string filename = string(PATH) + "g" + to_string(s) + ".txt";
+        string filename = string(PATH) + "g" + to_string(s) + "_" + to_string(SEED) +  ".txt";
         ofstream file(filename);
         if(!file.is_open()) {
             cerr << "Erro ao abrir o arquivo: " << filename << endl;
