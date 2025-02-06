@@ -1,0 +1,6 @@
+archives/g200_1234.txt
+Domination set: [20, 26, 75, 89, 114, 132, 144, 159]
+Domination size: 8
+Size of covered: 200
+Filename: archives/g200_1234.txt
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

@@ -1,0 +1,6 @@
+archives/g80_1234.txt
+Domination set: [3, 4, 23, 28, 77]
+Domination size: 5
+Size of covered: 80
+Filename: archives/g80_1234.txt
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

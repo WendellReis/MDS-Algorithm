@@ -1,0 +1,6 @@
+archives/g30_4321.txt
+Domination set: [7, 13, 16, 22, 24]
+Domination size: 5
+Size of covered: 30
+Filename: archives/g30_4321.txt
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

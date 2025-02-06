@@ -1,0 +1,6 @@
+archives/g200_3377.txt
+Domination set: [105, 116, 119, 148, 180, 182, 188]
+Domination size: 7
+Size of covered: 200
+Filename: archives/g200_3377.txt
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

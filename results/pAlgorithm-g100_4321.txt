@@ -1,0 +1,6 @@
+archives/g100_4321.txt
+Domination set: [11, 16, 19, 27, 79, 88]
+Domination size: 6
+Size of covered: 100
+Filename: archives/g100_4321.txt
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.
