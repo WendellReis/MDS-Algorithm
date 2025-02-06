@@ -4,12 +4,20 @@
 #include <algorithm>
 #include <string>
 #include <chrono>
+#include <filesystem>
 
 using namespace std;
 using namespace chrono;
 
+string PATH = "results/";
+
 vector<bool> MDS;
 int MDS_size = 0;
+
+string getFilename(const std::string& caminho) {
+    std::filesystem::path p(caminho);
+    return p.stem().string();
+}
 
 void displayMDS() {
     cout << "MDS ("<< MDS_size << ") = [";
@@ -23,7 +31,6 @@ void displayMDS() {
     }
     cout << "]\n";
 }
-
 
 bool isDominant(vector<bool> &ds, vector<vector<int>> &adj, int size) {
     for(int v = 1; v <= size; v++) {
@@ -104,7 +111,6 @@ int main(int argc, char* argv[]) {
         return EXIT_FAILURE;
     }
 
-
     for(int i = 1; i < argc; i++) {
         vector<vector<int>> adj = getGraph(argv[i]);
         if(adj.size() == 0) {
@@ -118,7 +124,7 @@ int main(int argc, char* argv[]) {
         vector<bool> ds(size+1,0);
         MDS = vector<bool>(size+1,1);
         MDS_size = size;
-        solve(ds,adj,MDS_size);
+        solve(ds,adj,MDS_size); 
 
         auto stop = high_resolution_clock::now();
 
@@ -129,12 +135,33 @@ int main(int argc, char* argv[]) {
         long long minutes = (duration_ms % 3600000) / 60000;
         long long seconds = (duration_ms % 60000) / 1000;
 
-        cout << "Filename: " << argv[i] << endl;
-        displayMDS();
-        cout << "Tempo de execucao: " 
+        string f = argv[i];
+        string filename = PATH + "fb" + "_" + getFilename(f) + ".txt";
+        ofstream file(filename);
+        if(!file.is_open()) {
+            cerr << "Erro ao abrir o arquivo: " << filename << endl;
+            break;
+        }
+
+        file << "Filename: " << argv[i] << endl;
+        cout << MDS_size << endl;
+        file << "MDS SIZE: " << MDS_size << endl;
+        file << "MDS = [";
+        for(int i = 1; i <= size; i++) {
+            if(MDS[i] == 1) {
+                file << i;
+                if(MDS_size > 1)
+                    file << ", ";
+                MDS_size--;
+            }
+        }
+        file << "]\n";
+            
+        file << "Tempo de execucao: " 
             << hours << " horas, "
             << minutes << " minutos e "
             << seconds << " segundos." << endl;
+        file.close();
     }
 
     return 0;

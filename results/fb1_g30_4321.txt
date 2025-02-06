@@ -1,0 +1,4 @@
+Filename: archives/g30_4321.txt
+MDS SIZE: 3
+MDS = [1, 15, 19]
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

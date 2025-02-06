@@ -1,0 +1,4 @@
+Filename: archives/g80_3377.txt
+MDS SIZE: 3
+MDS = [7, 56, 76]
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

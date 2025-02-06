@@ -1,0 +1,4 @@
+Filename: archives/g200_1234.txt
+MDS SIZE: 4
+MDS = [1, 48, 152, 172]
+Tempo de execucao: 0 horas, 1 minutos e 24 segundos.

@@ -1,0 +1,4 @@
+Filename: archives/g80_4321.txt
+MDS SIZE: 3
+MDS = [6, 36, 63]
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

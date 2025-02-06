@@ -1,0 +1,4 @@
+Filename: archives/g50_1234.txt
+MDS SIZE: 3
+MDS = [2, 19, 35]
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

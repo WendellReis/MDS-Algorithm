@@ -1,0 +1,4 @@
+Filename: archives/g200_4321.txt
+MDS SIZE: 4
+MDS = [1, 3, 48, 99]
+Tempo de execucao: 0 horas, 0 minutos e 58 segundos.

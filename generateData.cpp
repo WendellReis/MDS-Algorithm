@@ -4,13 +4,13 @@
 
 using namespace std;
 
-#define SEED 1234
+#define SEED 4321
 #define PATH "archives/"
 
 int main() {
     srand(SEED);
 
-    vector<int> SIZES = {10, 15, 20, 25, 30};
+    vector<int> SIZES = {200};
 
     for(auto s : SIZES) {
         string filename = string(PATH) + "g" + to_string(s) + "_" + to_string(SEED) +  ".txt";
