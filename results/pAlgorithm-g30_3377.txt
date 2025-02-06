@@ -1,6 +1,6 @@
 archives/g30_3377.txt
-Domination set: [9, 18, 20, 30]
-Domination size: 4
+Domination set: [8, 17, 22, 28, 30]
+Domination size: 5
 Size of covered: 30
 Filename: archives/g30_3377.txt
 Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

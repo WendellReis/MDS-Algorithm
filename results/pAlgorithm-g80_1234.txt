@@ -1,6 +1,6 @@
 archives/g80_1234.txt
-Domination set: [3, 4, 23, 28, 77]
-Domination size: 5
+Domination set: [42, 72, 75, 77, 79, 80]
+Domination size: 6
 Size of covered: 80
 Filename: archives/g80_1234.txt
 Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

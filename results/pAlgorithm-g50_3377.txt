@@ -1,5 +1,5 @@
 archives/g50_3377.txt
-Domination set: [5, 8, 10, 21, 23]
+Domination set: [17, 30, 42, 45, 50]
 Domination size: 5
 Size of covered: 50
 Filename: archives/g50_3377.txt

@@ -1,5 +1,5 @@
 archives/g100_4321.txt
-Domination set: [11, 16, 19, 27, 79, 88]
+Domination set: [21, 86, 93, 97, 99, 100]
 Domination size: 6
 Size of covered: 100
 Filename: archives/g100_4321.txt

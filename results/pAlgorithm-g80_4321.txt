@@ -1,6 +1,6 @@
 archives/g80_4321.txt
-Domination set: [6, 16, 23, 38, 68, 80]
-Domination size: 6
+Domination set: [13, 38, 40, 69, 76, 79, 80]
+Domination size: 7
 Size of covered: 80
 Filename: archives/g80_4321.txt
 Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

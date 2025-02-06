@@ -1,5 +1,5 @@
 archives/g200_3377.txt
-Domination set: [105, 116, 119, 148, 180, 182, 188]
+Domination set: [131, 133, 172, 185, 197, 198, 200]
 Domination size: 7
 Size of covered: 200
 Filename: archives/g200_3377.txt

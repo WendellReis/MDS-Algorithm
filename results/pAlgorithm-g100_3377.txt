@@ -1,5 +1,5 @@
 archives/g100_3377.txt
-Domination set: [4, 6, 12, 36, 68, 89, 93, 98]
+Domination set: [36, 53, 66, 68, 89, 91, 99, 100]
 Domination size: 8
 Size of covered: 100
 Filename: archives/g100_3377.txt

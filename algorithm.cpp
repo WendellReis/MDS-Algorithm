@@ -135,6 +135,18 @@ vector<vector<int>> getGraph(const string &filename) {
     return adj;
 } 
 
+vector<float> getProbability(vector<float> dominators, vector<vector<int>> candidates) {
+    vector<float> probability(0);
+    for(auto v: dominators) {
+        int qtd = 0;
+        float sum = 0;
+        for(auto candidate : candidates[v])
+            sum+=dominators[candidate];
+        probability.push_back(sum/qtd);
+    }
+    return probability;
+}
+
 int main(int argc, char* argv[]) {
     if(argc < 2) {
         cerr << "Erro: arquivos nao especificados\n";
@@ -160,11 +172,11 @@ int main(int argc, char* argv[]) {
         vector<int> supportedCanidates = buildSupport(adj, candidates);
         vector<float> dominantes = solve(candidates, supportedCanidates);
 
-        auto stop = high_resolution_clock::now();
+        vector<float> probability = getProbability(dominantes, candidates);
         
         vector<pair<float,int>> dProbability(0);
         int c = 0;
-        for(auto k : dominantes) {
+        for(auto k : probability) {
             dProbability.push_back({k, c});
             c++;
         }
@@ -182,6 +194,8 @@ int main(int argc, char* argv[]) {
                 domination.insert(v.second);
             }
         }
+
+        auto stop = high_resolution_clock::now();
 
         auto duration = duration_cast<seconds>(stop - start);
         long long duration_ms = duration_cast<milliseconds>(stop - start).count();

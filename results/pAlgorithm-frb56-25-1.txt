@@ -1,6 +1,6 @@
 archives/frb56-25-1.txt
-Domination set: [20, 42, 73, 78, 105, 150, 184, 201, 247, 285, 355, 377, 459, 496, 515, 536, 581, 638, 663, 684, 767, 800, 806, 840, 857, 886, 942, 981, 1071, 1117, 1133, 1184, 1223, 1258, 1279, 1320, 1342, 1357, 1396]
-Domination size: 39
+Domination set: [5, 76, 120, 205, 256, 341, 373, 471, 478, 524, 538, 615, 640, 672, 724, 761, 797, 812, 845, 854, 900, 920, 950, 971, 1000, 1021, 1065, 1099, 1125, 1149, 1159, 1199, 1225, 1249, 1275, 1299, 1325, 1347, 1374, 1400]
+Domination size: 40
 Size of covered: 1400
 Filename: archives/frb56-25-1.txt
-Tempo de execucao: 0 horas, 0 minutos e 55 segundos.
+Tempo de execucao: 0 horas, 0 minutos e 50 segundos.
