@@ -161,23 +161,7 @@ int main(int argc, char* argv[]) {
         vector<float> dominantes = solve(candidates, supportedCanidates);
 
         auto stop = high_resolution_clock::now();
-
-        /*
-        int c = 0;
-        for(auto k : supportedCanidates) {
-            cout << c << ": " << k << '\n';
-            c++;
-        }
-
-        int c=0;
-        for(auto d : candidates) {
-            cout << c << "[";
-            for(auto k : d)
-                cout << k << ',';
-            c++;
-            cout << "]\n";
-        }
-        */
+        
         vector<pair<float,int>> dProbability(0);
         int c = 0;
         for(auto k : dominantes) {
