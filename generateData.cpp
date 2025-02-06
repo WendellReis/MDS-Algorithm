@@ -10,7 +10,7 @@ using namespace std;
 int main() {
     srand(SEED);
 
-    vector<int> SIZES = {15, 20, 25, 30};
+    vector<int> SIZES = {10, 15, 20, 25, 30};
 
     for(auto s : SIZES) {
         string filename = string(PATH) + "g" + to_string(s) + "_" + to_string(SEED) +  ".txt";
