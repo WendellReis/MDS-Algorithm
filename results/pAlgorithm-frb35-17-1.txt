@@ -1,6 +1,0 @@
-archives/frb35-17-1.txt
-Domination set: [12, 34, 71, 99, 150, 160, 234, 248, 268, 302, 333, 353, 391, 404, 424, 440, 451, 473, 493, 510, 527, 543, 561, 578, 595]
-Domination size: 25
-Size of covered: 595
-Filename: archives/frb35-17-1.txt
-Tempo de execucao: 0 horas, 0 minutos e 4 segundos.

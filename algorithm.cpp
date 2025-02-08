@@ -38,7 +38,7 @@ vector<int> buildDegreeByBase(vector<vector<int>> &adj, int base) {
         int j = 1; 
         while(pow(base, j) < adj[i].size())
             j++;
-        deg.push_back((int)pow(base, --j == 0 ? 1 : j));
+        deg.push_back((int)pow(base, j));
     }
     return deg;
 }
@@ -51,26 +51,32 @@ bool isAdj(vector<vector<int>> &adj, int u, int v) {
     return false;
 }
 
-vector<vector<int>> buildCandidateByBasedDegree(vector<vector<int>> &adj, vector<int> &basedDegree) {
-    vector<vector<int>> candidates = vector<vector<int>>(adj.size());
-    for (size_t i = 0; i < adj.size(); i++) {
-        set<int> conjunto;
-        for (size_t j = 0; j < adj[i].size(); j++) {
-            conjunto.insert(adj[i][j]);
-        }
-
-        for (size_t j = 0; j < adj[i].size(); j++) {
-            for(size_t l=0; l < adj[adj[i][j]].size();l++) {
-                if(conjunto.find(adj[adj[i][j]][l]) == conjunto.end()) {
-                    candidates[i].push_back(adj[adj[i][j]][l]);
+vector<set<int>> buildCandidateByBasedDegree(vector<vector<int>> &adj, vector<int> &basedDegree) {
+    vector<set<int>> candidates = vector<set<int>>(adj.size());
+    for (size_t v = 0; v < adj.size(); v++) {
+        int dv = basedDegree[v];
+        for (size_t w = 0; w < adj[v].size(); w++) {
+            int dw = basedDegree[adj[v][w]];
+            if(v != adj[v][w]) {
+                if(dv >= dw) {
+                    candidates[v].insert(adj[v][w]);
+                }   
+            }
+            for(size_t l=0; l < adj[adj[v][w]].size();l++) {
+                if(v != adj[adj[v][w]][l]) {
+                    dw = basedDegree[adj[adj[v][w]][l]];
+                    if(dv >= dw) {
+                        candidates[v].insert(adj[adj[v][w]][l]);
+                    }
                 }
             }
         }
     }
+
     return candidates;    
 }
 
-vector<int> buildSupport(vector<vector<int>> &adj, vector<vector<int>> candidates) {
+vector<int> buildSupport(vector<vector<int>> &adj, vector<set<int>> candidates) {
     vector<int> v(0);
     for (size_t i = 0; i < adj.size(); i++)
     {
@@ -84,21 +90,20 @@ vector<int> buildSupport(vector<vector<int>> &adj, vector<vector<int>> candidate
                 }
         }
         v.push_back(qtd);
-        
     }
-    
+
     return v;
 }
 
 
-vector<float> solve(vector<vector<int>> &candidates, vector<int> &supports) {
+vector<float> solve(vector<set<int>> &candidates, vector<int> &supports) {
     vector<float> D(0);
-    for (size_t i = 0; i < candidates.size(); i++)
+    for (size_t v = 0; v < candidates.size(); v++)
     {
-        int qtd = 0;
-        for(int v : candidates[i])
-            qtd+=supports[v];
-        D.push_back((float)1/qtd);
+        int medv = 0;
+        for(int candidate : candidates[v])
+            medv+=supports[candidate];
+        D.push_back(medv > 0 ? (float)1/medv : 0);
     }
     
     return D;
@@ -135,18 +140,6 @@ vector<vector<int>> getGraph(const string &filename) {
     return adj;
 } 
 
-vector<float> getProbability(vector<float> dominators, vector<vector<int>> candidates) {
-    vector<float> probability(0);
-    for(auto v: dominators) {
-        int qtd = 0;
-        float sum = 0;
-        for(auto candidate : candidates[v])
-            sum+=dominators[candidate];
-        probability.push_back(sum/qtd);
-    }
-    return probability;
-}
-
 int main(int argc, char* argv[]) {
     if(argc < 2) {
         cerr << "Erro: arquivos nao especificados\n";
@@ -162,21 +155,19 @@ int main(int argc, char* argv[]) {
             cerr << "Erro ao criar lista de adjascencia!\n";
             continue;
         }
-        int base = 2;
+        int base = 10;
 
         auto start = high_resolution_clock::now();
    
         int size = adj.size()-1;
         vector<int> degBased= buildDegreeByBase(adj, base);
-        vector<vector<int>> candidates = buildCandidateByBasedDegree(adj, degBased);
+        vector<set<int>> candidates = buildCandidateByBasedDegree(adj, degBased);
         vector<int> supportedCanidates = buildSupport(adj, candidates);
         vector<float> dominantes = solve(candidates, supportedCanidates);
-
-        vector<float> probability = getProbability(dominantes, candidates);
         
         vector<pair<float,int>> dProbability(0);
         int c = 0;
-        for(auto k : probability) {
+        for(auto k : dominantes) {
             dProbability.push_back({k, c});
             c++;
         }

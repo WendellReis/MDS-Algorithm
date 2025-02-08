@@ -1,0 +1,6 @@
+archives/g30_1234.txt
+Domination set: [3, 14, 26, 30]
+Domination size: 4
+Size of covered: 30
+Filename: archives/g30_1234.txt
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

@@ -1,0 +1,6 @@
+archives/g50_3377.txt
+Domination set: [17, 30, 42, 45, 50]
+Domination size: 5
+Size of covered: 50
+Filename: archives/g50_3377.txt
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

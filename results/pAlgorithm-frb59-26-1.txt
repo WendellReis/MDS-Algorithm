@@ -1,6 +1,0 @@
-archives/frb59-26-1.txt
-Domination set: [94, 328, 353, 387, 394, 441, 458, 504, 572, 592, 636, 663, 697, 775, 784, 833, 877, 902, 962, 986, 1008, 1024, 1060, 1083, 1115, 1141, 1168, 1190, 1216, 1248, 1274, 1300, 1324, 1352, 1377, 1401, 1428, 1456, 1482, 1508, 1534]
-Domination size: 41
-Size of covered: 1534
-Filename: archives/frb59-26-1.txt
-Tempo de execucao: 0 horas, 1 minutos e 10 segundos.

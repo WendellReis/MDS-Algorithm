@@ -1,0 +1,6 @@
+archives/g200_4321.txt
+Domination set: [99, 107, 133, 156, 188, 195, 196, 200]
+Domination size: 8
+Size of covered: 200
+Filename: archives/g200_4321.txt
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

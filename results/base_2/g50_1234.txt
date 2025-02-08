@@ -1,0 +1,6 @@
+archives/g50_1234.txt
+Domination set: [22, 44, 45, 48, 50]
+Domination size: 5
+Size of covered: 50
+Filename: archives/g50_1234.txt
+Tempo de execucao: 0 horas, 0 minutos e 0 segundos.
