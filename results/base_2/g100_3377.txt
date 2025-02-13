@@ -1,6 +1,5 @@
-archives/g100_3377.txt
-Domination set: [36, 53, 66, 68, 89, 91, 99, 100]
-Domination size: 8
+Domination set: [1, 3, 6, 12, 16]
+Domination size: 5
 Size of covered: 100
 Filename: archives/g100_3377.txt
 Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

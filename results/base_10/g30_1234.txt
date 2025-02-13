@@ -1,5 +1,4 @@
-archives/g30_1234.txt
-Domination set: [11, 12, 29, 30]
+Domination set: [1, 3, 4, 15]
 Domination size: 4
 Size of covered: 30
 Filename: archives/g30_1234.txt

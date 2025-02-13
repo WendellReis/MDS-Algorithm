@@ -1,6 +1,5 @@
-archives/g50_4321.txt
-Domination set: [18, 26, 40, 43, 46, 50]
-Domination size: 6
+Domination set: [1, 2, 3, 7, 9]
+Domination size: 5
 Size of covered: 50
 Filename: archives/g50_4321.txt
 Tempo de execucao: 0 horas, 0 minutos e 0 segundos.

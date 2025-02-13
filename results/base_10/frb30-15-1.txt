@@ -1,5 +1,4 @@
-archives/frb30-15-1.txt
-Domination set: [43, 115, 146, 162, 195, 200, 211, 233, 245, 260, 284, 288, 313, 326, 353, 374, 389, 392, 411, 446]
+Domination set: [2, 27, 46, 66, 77, 91, 117, 129, 152, 175, 182, 202, 232, 287, 327, 335, 348, 391, 423, 438]
 Domination size: 20
 Size of covered: 450
 Filename: archives/frb30-15-1.txt

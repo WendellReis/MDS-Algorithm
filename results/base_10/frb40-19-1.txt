@@ -1,6 +1,5 @@
-archives/frb40-19-1.txt
-Domination set: [17, 29, 70, 95, 111, 129, 149, 171, 176, 214, 285, 297, 307, 342, 360, 395, 412, 434, 443, 468, 510, 532, 539, 619, 639, 662, 677, 685, 721]
+Domination set: [5, 27, 39, 77, 115, 134, 153, 172, 191, 225, 229, 248, 271, 305, 369, 387, 415, 429, 456, 470, 483, 518, 541, 560, 620, 636, 677, 685, 746]
 Domination size: 29
 Size of covered: 760
 Filename: archives/frb40-19-1.txt
-Tempo de execucao: 0 horas, 0 minutos e 9 segundos.
+Tempo de execucao: 0 horas, 0 minutos e 7 segundos.

@@ -31,7 +31,7 @@ void displayMDS() {
     cout << "]\n";
 }
 
-vector<int> buildDegreeByBase(vector<vector<int>> &adj, int base) {
+vector<int> buildDegreeByBase(vector<vector<int>> &adj, float base) {
     vector<int> deg(0);
     for (size_t i = 0; i < adj.size(); i++)
     {
@@ -76,33 +76,35 @@ vector<set<int>> buildCandidateByBasedDegree(vector<vector<int>> &adj, vector<in
     return candidates;    
 }
 
-vector<int> buildSupport(vector<vector<int>> &adj, vector<set<int>> candidates) {
-    vector<int> v(0);
+vector<pair<int, vector<int>>> buildSupport(vector<vector<int>> &adj, vector<set<int>> candidates) {
+    vector<pair<int, vector<int>>> v(0);
     for (size_t i = 0; i < adj.size(); i++)
     {
         int qtd = 0;
+        vector<int> suporteds(0);
         for (size_t j = 0; j < candidates.size(); j++)
         {
             for(auto candidate : candidates[j])
                 if(i == candidate) {
+                    suporteds.push_back(j);
                     qtd++;
                     break;
                 }
         }
-        v.push_back(qtd);
+        v.push_back({i, suporteds});
     }
 
     return v;
 }
 
 
-vector<float> solve(vector<set<int>> &candidates, vector<int> &supports) {
+vector<float> solve(vector<set<int>> &candidates, vector<pair<int, vector<int>>> &supports) {
     vector<float> D(0);
     for (size_t v = 0; v < candidates.size(); v++)
     {
         int medv = 0;
         for(int candidate : candidates[v])
-            medv+=supports[candidate];
+            medv+=supports[candidate].second.size();
         D.push_back(medv > 0 ? (float)1/medv : 0);
     }
     
@@ -149,43 +151,46 @@ int main(int argc, char* argv[]) {
 
     for(int i = 1; i < argc; i++) {
         
-        cout << argv[i] << '\n';
         vector<vector<int>> adj = getGraph(argv[i]);
         if(adj.size() == 0) {
             cerr << "Erro ao criar lista de adjascencia!\n";
             continue;
         }
-        int base = 10;
+        float base = 10;
 
         auto start = high_resolution_clock::now();
    
         int size = adj.size()-1;
         vector<int> degBased= buildDegreeByBase(adj, base);
         vector<set<int>> candidates = buildCandidateByBasedDegree(adj, degBased);
-        vector<int> supportedCanidates = buildSupport(adj, candidates);
+        vector<pair<int, vector<int>>> supportedCanidates = buildSupport(adj, candidates);
         vector<float> dominantes = solve(candidates, supportedCanidates);
         
         vector<pair<float,int>> dProbability(0);
-        int c = 0;
-        for(auto k : dominantes) {
-            dProbability.push_back({k, c});
-            c++;
+        int k=0;
+        for(auto d: dominantes) {
+            if(k > 0 && d == 0)
+                d=1;
+            dProbability.push_back({d, k});
+            k++;
         }
 
-        sort(dProbability.rbegin(), dProbability.rend());
-
+        sort(dProbability.begin(), dProbability.end());
         set<int> coveredVs;
         set<int> domination;
         for(auto v : dProbability) {
             if(v.second == 0)
                 continue;
-            if(coveredVs.find(v.second) == coveredVs.end()) {
-                for (size_t i = 0; i < adj[v.second].size(); i++)
-                    coveredVs.insert(adj[v.second][i]);
-                domination.insert(v.second);
-            }
-        }
 
+            if(coveredVs.find(v.second) == coveredVs.end()) {
+                for (size_t i = 0; i < adj[v.second].size(); i++) 
+                    coveredVs.insert(adj[v.second][i]);
+                domination.insert(v.second);   
+            }
+            if(coveredVs.size() + domination.size() == size)
+                break;
+        }
+        
         auto stop = high_resolution_clock::now();
 
         auto duration = duration_cast<seconds>(stop - start);
